@@ -1,5 +1,5 @@
 /**
- *  Copyright 2015 AdamV
+ *  Copyright 2015 AdamV, 2017 PBalogh
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
@@ -16,9 +16,18 @@
  *  Get better dimming frequency than 1Hz
  *  Turn into Parent / Child app to avoid clutter for multiple switches
  *
- *  Version 1.6
- *  Author: AdamV
- *  Date: 2016-01-25
+ *  Version 2.0
+ *  Author: PBalogh
+ *  Date 2017-01-23
+ *
+ *  Changes since 1.6:
+ *  - simplified to handle one button per instance. You can add four apps to the same wall controller and select the button number (1-4) in each smartapp
+ *  - Improved dimming with a time-based approach
+ *  - Added switchon and switchoff devices, so for example the up button will always swich the lights on, never off
+ *  - If a light is dimmed and has switchon as well, it'll also set it to max brightness if pressed again while already on
+ *  - Added safeguards for dimming, so it'll never overflow/underflow, which could cause trouble
+ *
+ *  Version 1.6 and earlier by author: AdamV
  *
  *  Changes since 1.5:
  *  - Added more options for routines based off various click events
@@ -35,8 +44,8 @@
  
 definition(
     name: "One button controller with dimming, double clicks, & click-holds",
-    namespace: "Petya",
-    author: "AdamV and Petya",
+    namespace: "Devolo",
+    author: "AdamV and PBalogh",
     description: "Assign events to button pushes, hold start, whilst held, & hold end to swicthes and level switches.For Z-Wave.me Secure Wireless Wall controller (ZME_WALLC-S), Z-Wave.me Wall controller 2 (ZME_WALLC-2), Popp Wall C Forever, Devolo Wall Switch & Z-Wave.me Key Fob",
     category: "Convenience",
     iconUrl: "http://94.23.40.33/smartthings/assets/rocker.png",
